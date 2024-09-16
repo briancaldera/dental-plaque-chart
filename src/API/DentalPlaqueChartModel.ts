@@ -22,184 +22,188 @@ type DentalPlaqueChartModel = {
     quadrant_4: DentalPiece[]
 }
 
+const quadrant1: DentalPiece[] = [
+    {
+        id: "18", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "17", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "16", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "15", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "14", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "13", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "12", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "11", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+] satisfies DentalPiece[]
+
+const quadrant2: DentalPiece[] = [
+    {
+        id: "21", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "22", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "23", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "24", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "25", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "26", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "27", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "28", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+] satisfies DentalPiece[]
+
+const quadrant3: DentalPiece[] = [
+    {
+        id: "31", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "32", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "33", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "34", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "35", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "36", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "37", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "38", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+] satisfies DentalPiece[]
+
+const quadrant4: DentalPiece[] = [
+    {
+        id: "48", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "47", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "46", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "45", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "44", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "43", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "42", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+    {
+        id: "41", present: true, surfaces: {
+            back: false, front: false, left: false, right: false
+        }
+    },
+] satisfies DentalPiece[]
+
+const mergeQuadrant: (target: DentalPiece[], source: DentalPiece[]) => DentalPiece[] = (target, source) => {
+    return target.map(piece => source.find(sourcePiece => piece.id === sourcePiece.id) ?? piece)
+}
+
 const useDentalPlaqueChart: (props?: UseDentalPlaqueChart) => UseDentalPlaqueChartReturn = (props) => {
 
-    const quadrant1: DentalPiece[] = [
-        {
-            id: "18", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "17", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "16", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "15", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "14", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "13", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "12", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "11", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-    ] satisfies DentalPiece[]
-
-    const quadrant2: DentalPiece[] = [
-        {
-            id: "21", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "22", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "23", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "24", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "25", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "26", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "27", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "28", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-    ] satisfies DentalPiece[]
-
-    const quadrant3: DentalPiece[] = [
-        {
-            id: "31", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "32", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "33", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "34", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "35", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "36", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "37", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "38", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-    ] satisfies DentalPiece[]
-
-    const quadrant4: DentalPiece[] = [
-        {
-            id: "48", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "47", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "46", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "45", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "44", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "43", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "42", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-        {
-            id: "41", present: true, surfaces: {
-                back: false, front: false, left: false, right: false
-            }
-        },
-    ] satisfies DentalPiece[]
-
-    const [group1, setGroup1] = useState<DentalPiece[]>(quadrant1);
-    const [group2, setGroup2] = useState<DentalPiece[]>(quadrant2);
-    const [group3, setGroup3] = useState<DentalPiece[]>(quadrant3);
-    const [group4, setGroup4] = useState<DentalPiece[]>(quadrant4);
+    const [group1, setGroup1] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant1, props.model.quadrant_1) : quadrant1);
+    const [group2, setGroup2] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant2, props.model.quadrant_2) : quadrant2);
+    const [group3, setGroup3] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant3, props.model.quadrant_3) : quadrant3);
+    const [group4, setGroup4] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant4, props.model.quadrant_4) : quadrant4);
 
     const getModel: () => DentalPlaqueChartModel = () => {
         return {
