@@ -6,13 +6,13 @@ function App() {
 
     const dentalPlaqueChart = useDentalPlaqueChart()
 
-  return (
-    <>
-        <div className={'bg-white'}>
-            <DentalPlaqueChart chart={dentalPlaqueChart}/>
-        </div>
-    </>
-  )
+    return (
+        <>
+            <div className={'bg-white'}>
+                <DentalPlaqueChart chart={dentalPlaqueChart}/>
+            </div>
+        </>
+    )
 }
 
 export default App
