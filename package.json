@@ -4,9 +4,22 @@
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
+  "files": ["dist"],
+  "main": "./dist/dental-plaque-chart.umd.cjs",
+  "module": "./dist/dental-plaque-chart.js",
+  "exports": {
+    ".": {
+      "import": "./dist/dental-plaque-chart.js",
+      "require": "./dist/dental-plaque-chart.umd.cjs"
+    }
+  },
   "description": "A basic implementation of a dental plaque chart, using React and Tailwind.",
   "repository": "https://github.com/briancaldera/dental-plaque-chart.git",
-  "keywords": ["dental", "plaque", "chart"],
+  "keywords": [
+    "dental",
+    "plaque",
+    "chart"
+  ],
   "author": "Brian Caldera",
   "scripts": {
     "dev": "vite",
@@ -20,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
