@@ -18,13 +18,13 @@ const unmarkedColor = 'bg-blue-200 hover:bg-blue-300'
 
 const Tooth = (
     {
-                   pieceModel, size = '40px', onClickSurface = () => {
+                   pieceModel, size = '100%', onClickSurface = () => {
     }, onDiscardPiece = () => {
     }
                }: ToothProps) => {
 
     return (
-        <div className='relative aspect-square' style={{width: size}}>
+        <div className='relative aspect-square' style={{width: size, flex: '1 1 0%'}}>
             <div onClick={() => onDiscardPiece(pieceModel.id)}
                  className='absolute right-0 top-0 z-50 w-1/4 aspect-square cursor-pointer'>
                 <CircleX/>

@@ -7,7 +7,7 @@ function App() {
     const dentalPlaqueChart = useDentalPlaqueChart()
 
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center w-[800px]'>
             <DentalPlaqueChart chart={dentalPlaqueChart}/>
         </div>
     )
