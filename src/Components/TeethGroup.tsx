@@ -1,3 +1,5 @@
+"use client"
+
 import {DentalPiece, Surface} from "../models/DentalPiece.ts";
 import Tooth from "./Tooth.tsx";
 
@@ -10,9 +12,9 @@ type TeethGroupProps = {
 const TeethGroup = ({teeth, onClickSurface = () => {}, onDiscardPiece = () => {}}: TeethGroupProps) => {
 
     return (
-        <div className={'p-4 inline-flex gap-1 border flex-wrap'}>
+        <div className='flex gap-4 border flex-wrap'>
             {
-                teeth.map(tooth => <Tooth key={tooth.id} piece={tooth} onClickSurface={(surface, mark) => {
+                teeth.map(tooth => <Tooth key={tooth.id} pieceModel={tooth} onClickSurface={(surface, mark) => {
                     onClickSurface(tooth.id, surface, mark)
                 }} onDiscardPiece={onDiscardPiece}/>)
             }

@@ -1,11 +1,14 @@
+"use client"
+
 import {type DentalPiece} from "../models/DentalPiece.ts";
 import CircleX from "./CircleX.tsx";
+import {CSSProperties} from "react";
 
 type ToothProps = {
-    piece: DentalPiece
+    pieceModel: DentalPiece
     onClickSurface?: (surface: Surface, mark: boolean) => void
     onDiscardPiece?: (id: string) => void
-    size?: number
+    size?: CSSProperties['width']
 }
 
 type Surface = 'front' | 'back' | 'left' | 'right'
@@ -13,27 +16,35 @@ type Surface = 'front' | 'back' | 'left' | 'right'
 const markColor = 'bg-rose-500 hover:bg-rose-400'
 const unmarkedColor = 'bg-blue-200 hover:bg-blue-300'
 
-const Tooth = ({piece, size = 40, onClickSurface = () => {}, onDiscardPiece = () => {}}: ToothProps) => {
+const Tooth = (
+    {
+                   pieceModel, size = '40px', onClickSurface = () => {
+    }, onDiscardPiece = () => {
+    }
+               }: ToothProps) => {
 
     return (
-        <div className={'relative p-2'}>
-            <div onClick={() => onDiscardPiece(piece.id)}>
-                <CircleX className={'absolute right-0 top-0 z-50 w-1/4 h-auto cursor-pointer'}/>
+        <div className='relative aspect-square' style={{width: size}}>
+            <div onClick={() => onDiscardPiece(pieceModel.id)}
+                 className='absolute right-0 top-0 z-50 w-1/4 aspect-square cursor-pointer'>
+                <CircleX/>
             </div>
-            <div className={`w-[${size}px] aspect-square grid grid-cols-2 rotate-45`}>
+            <div className='w-full aspect-square'>
                 {
-                    (piece.present) ?
-                        (<>
-                            <Surface surface={'front'} isMarked={piece.surfaces.front} onClickSurface={onClickSurface}/>
-                            <Surface surface={'right'} isMarked={piece.surfaces.right} onClickSurface={onClickSurface}/>
-                            <Surface surface={'left'} isMarked={piece.surfaces.left} onClickSurface={onClickSurface}/>
-                            <Surface surface={'back'} isMarked={piece.surfaces.back} onClickSurface={onClickSurface}/>
-                        </>) :
-                        (
-                            <div className={'col-span-full row-span-full -rotate-45'}>
-                                <CircleX className={'h-full w-full text-blue-900'}/>
-                            </div>
-                        )
+                    (pieceModel.present) ?
+                        (<div className='w-full aspect-square grid grid-cols-2 rotate-45'>
+                            <Surface surface={'front'} isMarked={pieceModel.surfaces.front}
+                                     onClickSurface={onClickSurface}/>
+                            <Surface surface={'right'} isMarked={pieceModel.surfaces.right}
+                                     onClickSurface={onClickSurface}/>
+                            <Surface surface={'left'} isMarked={pieceModel.surfaces.left}
+                                     onClickSurface={onClickSurface}/>
+                            <Surface surface={'back'} isMarked={pieceModel.surfaces.back}
+                                     onClickSurface={onClickSurface}/>
+                        </div>) :
+                        (<div className='w-full aspect-square h-full'>
+                            <CircleX/>
+                        </div>)
                 }
             </div>
         </div>
@@ -46,7 +57,10 @@ type SurfaceProps = {
     onClickSurface?: (surface: Surface, mark: boolean) => void
 }
 
-const Surface = ({isMarked, surface, onClickSurface = () => {}}: SurfaceProps) => {
+const Surface = ({
+                     isMarked, surface, onClickSurface = () => {
+    }
+                 }: SurfaceProps) => {
 
     const surfaceStyle: string = ((isMarked) ? markColor : unmarkedColor) + ' hover:scale-110 transition active:scale-95'
 
@@ -68,7 +82,8 @@ const Surface = ({isMarked, surface, onClickSurface = () => {}}: SurfaceProps) =
     }
 
     return (
-        <div onClick={() => onClickSurface(surface, !isMarked)} className={`${cornerStyle} ${surfaceStyle}`} tabIndex={0}></div>
+        <div onClick={() => onClickSurface(surface, !isMarked)} className={`${cornerStyle} ${surfaceStyle}`}
+             tabIndex={0}></div>
     )
 }
 
