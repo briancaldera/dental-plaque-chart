@@ -4,13 +4,16 @@
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
-  "files": ["dist"],
-  "main": "./dist/dental-plaque-chart.umd.cjs",
-  "module": "./dist/dental-plaque-chart.js",
+  "files": [
+    "dist"
+  ],
+  "main": "lib/main.js",
+  "types": "lib/main.d.ts",
+  "module": "./dist/dental-plaque-chart.es.ts",
   "exports": {
     ".": {
-      "import": "./dist/dental-plaque-chart.js",
-      "require": "./dist/dental-plaque-chart.umd.cjs"
+      "import": "./dist/dental-plaque-chart.es.ts",
+      "require": "./dist/dental-plaque-chart.umd.ts"
     }
   },
   "description": "A basic implementation of a dental plaque chart, using React and Tailwind.",
@@ -36,7 +39,7 @@
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.12",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
