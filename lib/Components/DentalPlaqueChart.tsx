@@ -1,8 +1,8 @@
 "use client"
 
-import TeethGroup from "./TeethGroup.tsx";
-import type {DentalPiece, Surface} from "../models/DentalPiece.ts";
-import {UseDentalPlaqueChartReturn} from "../API/DentalPlaqueChartModel.ts";
+import TeethGroup from "./TeethGroup";
+import type {DentalPiece, Surface} from "../models/DentalPiece";
+import {UseDentalPlaqueChartReturn} from "../API/DentalPlaqueChartModel";
 
 type DentalPlaqueChartProps = {
     chart: UseDentalPlaqueChartReturn

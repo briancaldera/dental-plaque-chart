@@ -1,7 +1,7 @@
 "use client"
 
-import {DentalPiece, Surface} from "../models/DentalPiece.ts";
-import Tooth from "./Tooth.tsx";
+import {DentalPiece, Surface} from "../models/DentalPiece";
+import Tooth from "./Tooth";
 
 type TeethGroupProps = {
     teeth: DentalPiece[]

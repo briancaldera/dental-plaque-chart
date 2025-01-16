@@ -1,6 +1,6 @@
 import './App.css'
-import DentalPlaqueChart from "./Components/DentalPlaqueChart.tsx";
-import {useDentalPlaqueChart} from "./API/DentalPlaqueChartModel.ts";
+import DentalPlaqueChart from "../lib/Components/DentalPlaqueChart.tsx";
+import {useDentalPlaqueChart} from "../lib/API/DentalPlaqueChartModel.ts";
 
 function App() {
 

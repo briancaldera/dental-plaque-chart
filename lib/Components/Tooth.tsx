@@ -1,7 +1,7 @@
 "use client"
 
-import {type DentalPiece} from "../models/DentalPiece.ts";
-import CircleX from "./CircleX.tsx";
+import {type DentalPiece} from "../models/DentalPiece";
+import CircleX from "./CircleX";
 import {CSSProperties} from "react";
 
 type ToothProps = {
