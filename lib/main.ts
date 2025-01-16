@@ -1,4 +1,9 @@
-import {useDentalPlaqueChart, type UseDentalPlaqueChart, type UseDentalPlaqueChartReturn} from '../src/API/DentalPlaqueChartModel.ts'
-import DentalPlaqueChart from '../src/Components/DentalPlaqueChart.tsx'
+import DentalPlaqueChart from "./Components/DentalPlaqueChart";
+import {
+    useDentalPlaqueChart,
+    type UseDentalPlaqueChart,
+    type UseDentalPlaqueChartReturn
+} from "./API/DentalPlaqueChartModel";
+import './index.css'
 
-export {useDentalPlaqueChart, type UseDentalPlaqueChart, type UseDentalPlaqueChartReturn, DentalPlaqueChart}
+export {useDentalPlaqueChart, DentalPlaqueChart, type UseDentalPlaqueChartReturn, type UseDentalPlaqueChart}

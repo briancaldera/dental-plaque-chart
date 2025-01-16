@@ -1,18 +1,12 @@
 {
   "name": "dental-plaque-chart",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "license": "MIT",
   "files": ["dist"],
-  "main": "./dist/dental-plaque-chart.umd.cjs",
-  "module": "./dist/dental-plaque-chart.js",
-  "exports": {
-    ".": {
-      "import": "./dist/dental-plaque-chart.js",
-      "require": "./dist/dental-plaque-chart.umd.cjs"
-    }
-  },
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "description": "A basic implementation of a dental plaque chart, using React and Tailwind.",
   "repository": "https://github.com/briancaldera/dental-plaque-chart.git",
   "keywords": [
@@ -23,7 +17,7 @@
   "author": "Brian Caldera",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --p ./tsconfig.build.json && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -36,16 +30,18 @@
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.12",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "postcss": "^8.4.31",
-    "tailwindcss": "^3.2.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.5.0",
+    "vite-plugin-lib-inject-css": "^2.2.1"
   }
 }

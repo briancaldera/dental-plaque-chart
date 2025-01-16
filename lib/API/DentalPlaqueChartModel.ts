@@ -1,4 +1,4 @@
-import {DentalPiece} from "../models/DentalPiece.ts";
+import {DentalPiece} from "../models/DentalPiece";
 import React, {useState} from "react";
 
 type UseDentalPlaqueChart = {
@@ -8,11 +8,14 @@ type UseDentalPlaqueChart = {
 type UseDentalPlaqueChartReturn = {
     getModel: () => DentalPlaqueChartModel
     _listeners: {
-        setGroup1:  React.Dispatch<React.SetStateAction<DentalPiece[]>>
-        setGroup2:  React.Dispatch<React.SetStateAction<DentalPiece[]>>
-        setGroup3:  React.Dispatch<React.SetStateAction<DentalPiece[]>>
-        setGroup4:  React.Dispatch<React.SetStateAction<DentalPiece[]>>
-    }
+        setGroup1: React.Dispatch<React.SetStateAction<DentalPiece[]>>
+        setGroup2: React.Dispatch<React.SetStateAction<DentalPiece[]>>
+        setGroup3: React.Dispatch<React.SetStateAction<DentalPiece[]>>
+        setGroup4: React.Dispatch<React.SetStateAction<DentalPiece[]>>
+    },
+    presentDentalPieces: () => number
+    markedSurfaces: () => number
+    plaquePercentage: () => number
 }
 
 type DentalPlaqueChartModel = {
@@ -194,25 +197,69 @@ const quadrant4: DentalPiece[] = [
     },
 ] satisfies DentalPiece[]
 
-const mergeQuadrant: (target: DentalPiece[], source: DentalPiece[]) => DentalPiece[] = (target, source) => {
-    return target.map(piece => source.find(sourcePiece => piece.id === sourcePiece.id) ?? piece)
-}
+const useDentalPlaqueChart: (props?: UseDentalPlaqueChart) => UseDentalPlaqueChartReturn = (props?) => {
 
-const useDentalPlaqueChart: (props?: UseDentalPlaqueChart) => UseDentalPlaqueChartReturn = (props) => {
+    const [group1, setGroup1] = useState<DentalPiece[]>(() => JSON.parse(JSON.stringify(props?.model?.quadrant_1 ?? quadrant1)))
+    const [group2, setGroup2] = useState<DentalPiece[]>(() => JSON.parse(JSON.stringify(props?.model?.quadrant_2 ?? quadrant2)))
+    const [group3, setGroup3] = useState<DentalPiece[]>(() => JSON.parse(JSON.stringify(props?.model?.quadrant_3 ?? quadrant3)))
+    const [group4, setGroup4] = useState<DentalPiece[]>(() => JSON.parse(JSON.stringify(props?.model?.quadrant_4 ?? quadrant4)))
 
-    const [group1, setGroup1] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant1, props.model.quadrant_1) : quadrant1);
-    const [group2, setGroup2] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant2, props.model.quadrant_2) : quadrant2);
-    const [group3, setGroup3] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant3, props.model.quadrant_3) : quadrant3);
-    const [group4, setGroup4] = useState<DentalPiece[]>(() => (props?.model) ? mergeQuadrant(quadrant4, props.model.quadrant_4) : quadrant4);
-
-    const getModel: () => DentalPlaqueChartModel = () => {
-        return {
-            quadrant_1: group1, quadrant_2: group2, quadrant_3: group3, quadrant_4: group4
-
-        } satisfies DentalPlaqueChartModel
+    const model = {
+        quadrant_1: group1, quadrant_2: group2, quadrant_3: group3, quadrant_4: group4
     }
 
-    return {getModel, _listeners: {setGroup1, setGroup2, setGroup3, setGroup4}} satisfies UseDentalPlaqueChartReturn
+    const getModel: () => DentalPlaqueChartModel = () => {
+        return model satisfies DentalPlaqueChartModel
+    }
+
+    const presentDentalPieces = () => countPresentDentalPieces(model)
+    const markedSurfaces = () => countMarkedSurfaces(model)
+    const plaquePercentage = () => calculatePlaquePercentage(countMarkedSurfaces(model), countPresentDentalPieces(model))
+
+    return {
+        getModel, presentDentalPieces,
+        markedSurfaces, plaquePercentage, _listeners: {setGroup1, setGroup2, setGroup3, setGroup4}
+    } satisfies UseDentalPlaqueChartReturn
 }
+
+const countPresentDentalPieces = (model: DentalPlaqueChartModel) => {
+    return model.quadrant_1.filter(piece => piece.present).length +
+        model.quadrant_2.filter(piece => piece.present).length +
+        model.quadrant_3.filter(piece => piece.present).length +
+        model.quadrant_4.filter(piece => piece.present).length
+}
+
+const countMarkedSurfaces = (model: DentalPlaqueChartModel) => {
+    return model.quadrant_1.filter(piece => piece.present).reduce((previousValue, currentValue) => {
+            if (currentValue.surfaces.front) ++previousValue
+            if (currentValue.surfaces.back) ++previousValue
+            if (currentValue.surfaces.right) ++previousValue
+            if (currentValue.surfaces.left) ++previousValue
+            return previousValue
+        }, 0) +
+        model.quadrant_2.filter(piece => piece.present).reduce((previousValue, currentValue) => {
+            if (currentValue.surfaces.front) ++previousValue
+            if (currentValue.surfaces.back) ++previousValue
+            if (currentValue.surfaces.right) ++previousValue
+            if (currentValue.surfaces.left) ++previousValue
+            return previousValue
+        }, 0) +
+        model.quadrant_3.filter(piece => piece.present).reduce((previousValue, currentValue) => {
+            if (currentValue.surfaces.front) ++previousValue
+            if (currentValue.surfaces.back) ++previousValue
+            if (currentValue.surfaces.right) ++previousValue
+            if (currentValue.surfaces.left) ++previousValue
+            return previousValue
+        }, 0) +
+        model.quadrant_4.filter(piece => piece.present).reduce((previousValue, currentValue) => {
+            if (currentValue.surfaces.front) ++previousValue
+            if (currentValue.surfaces.back) ++previousValue
+            if (currentValue.surfaces.right) ++previousValue
+            if (currentValue.surfaces.left) ++previousValue
+            return previousValue
+        }, 0)
+}
+
+const calculatePlaquePercentage = (markedSurfaces: number, presentSurfaces: number): number => markedSurfaces / presentSurfaces
 
 export {useDentalPlaqueChart, type UseDentalPlaqueChart, type UseDentalPlaqueChartReturn}

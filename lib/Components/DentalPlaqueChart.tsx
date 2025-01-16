@@ -1,8 +1,8 @@
 "use client"
 
-import TeethGroup from "./TeethGroup.tsx";
-import type {DentalPiece, Surface} from "../models/DentalPiece.ts";
-import {UseDentalPlaqueChartReturn} from "../API/DentalPlaqueChartModel.ts";
+import TeethGroup from "./TeethGroup";
+import type {DentalPiece, Surface} from "../models/DentalPiece";
+import {UseDentalPlaqueChartReturn} from "../API/DentalPlaqueChartModel";
 
 type DentalPlaqueChartProps = {
     chart: UseDentalPlaqueChartReturn
@@ -35,7 +35,7 @@ const DentalPlaqueChart = ({ chart }: DentalPlaqueChartProps) => {
     }
 
     return (
-        <div className={'inline-grid grid-cols-1 sm:grid-cols-2'}>
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2'>
             <TeethGroup teeth={chart.getModel().quadrant_1} onDiscardPiece={(id) => {chart._listeners.setGroup1(prevState => handleDiscardPiece(prevState, id))}} onClickSurface={(id, surface, mark) => chart._listeners.setGroup1((prevState) => handleClickSurface(prevState, id, surface, mark))}/>
             <TeethGroup teeth={chart.getModel().quadrant_2} onDiscardPiece={(id) => {chart._listeners.setGroup2(prevState => handleDiscardPiece(prevState, id))}} onClickSurface={(id, surface, mark) => chart._listeners.setGroup2((prevState) => handleClickSurface(prevState, id, surface, mark))}/>
             <TeethGroup teeth={chart.getModel().quadrant_4} onDiscardPiece={(id) => {chart._listeners.setGroup4(prevState => handleDiscardPiece(prevState, id))}} onClickSurface={(id, surface, mark) => chart._listeners.setGroup4((prevState) => handleClickSurface(prevState, id, surface, mark))}/>
