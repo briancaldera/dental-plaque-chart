@@ -13,9 +13,9 @@ type UseDentalPlaqueChartReturn = {
         setGroup3: React.Dispatch<React.SetStateAction<DentalPiece[]>>
         setGroup4: React.Dispatch<React.SetStateAction<DentalPiece[]>>
     },
-    presentDentalPieces: () => number
-    markedSurfaces: () => number
-    plaquePercentage: () => number
+    getPresentDentalPieces: () => number
+    getMarkedSurfaces: () => number
+    getPlaqueRatio: () => number
 }
 
 type DentalPlaqueChartModel = {
@@ -214,11 +214,11 @@ const useDentalPlaqueChart: (props?: UseDentalPlaqueChart) => UseDentalPlaqueCha
 
     const presentDentalPieces = () => countPresentDentalPieces(model)
     const markedSurfaces = () => countMarkedSurfaces(model)
-    const plaquePercentage = () => calculatePlaquePercentage(countMarkedSurfaces(model), countPresentDentalPieces(model))
+    const plaqueRatio = () => calculatePlaquePercentage(countMarkedSurfaces(model), countPresentDentalPieces(model))
 
     return {
-        getModel, presentDentalPieces,
-        markedSurfaces, plaquePercentage, _listeners: {setGroup1, setGroup2, setGroup3, setGroup4}
+        getModel, getPresentDentalPieces: presentDentalPieces,
+        getMarkedSurfaces: markedSurfaces, getPlaqueRatio: plaqueRatio, _listeners: {setGroup1, setGroup2, setGroup3, setGroup4}
     } satisfies UseDentalPlaqueChartReturn
 }
 

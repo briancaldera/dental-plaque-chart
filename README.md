@@ -1,50 +1,79 @@
-# React + TypeScript + Vite
+# 🦷 Dental Plaque Chart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a component library for rendering 4-sides dental plaque charts.
 
-Currently, two official plugins are available:
+![Dental plaque chart image](public/chart.png "Chart image")
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can use this library to create a dental chart for your dental software.
+Use the model to save the chart state to the database.
 
-## Expanding the ESLint configuration
+Use the hook to access information about the model. Build a custom UI around the chart using this information.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![Dental plaque chart UI](public/chart_ui.png "Chart UI")
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation
+
+```shell
+npm install dental-plaque-chart
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
+
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+import {useDentalPlaqueChart, DentalPlaqueChart} from "dental-plaque-chart"
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+const MyChart = () => {
+    // Get a chart model
+    const chart = useDentalPlaqueChart()
+    
+    // Define a size for the container
+    return (
+        <div style={{width: '800px'}}>
+            <DentalPlaqueChart chart={chart}/>
+        </div>
+    )
+}
+```
+
+### Disable chart
+
+```js
+<DentalPlaqueChart chart={chart} disabled/>
+```
+
+### Get model
+
+```js
+const chart = useDentalPlaqueChart()
+const model = chart.getModel()
+// Save model to database
+// ...
+```
+
+### Set model
+
+```js
+const model = // Load model from database...
+const chart = useDentalPlaqueChart({model})
+```
+
+### Get present dental pieces
+    
+```js
+const count = chart.getPresentDentalPieces() // 0 to 32
+```
+
+### Get marked surfaces
+
+```js
+const count = chart.getMarkedSurfaces() // 0 to 128
+```
+
+### Get plaque percentage
+
+```js
+const count = chart.getPlaqueRatio() // 0.0 to 1.0
+const percentage = count * 100 // 0% to 100%
 ```
