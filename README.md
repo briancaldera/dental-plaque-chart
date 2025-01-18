@@ -1,5 +1,9 @@
 # 🦷 Dental Plaque Chart
 
+<a href='https://www.npmjs.com/package/dental-plaque-chart'>![NPM version](https://img.shields.io/npm/v/dental-plaque-chart)</a>
+![NPM downloads](https://img.shields.io/npm/d18m/dental-plaque-chart )
+<a href='./LICENSE.txt'>![NPM license](https://img.shields.io/npm/l/dental-plaque-chart )</a>
+
 This is a component library for rendering 4-sides dental plaque charts.
 
 ![Dental plaque chart image](public/chart.png "Chart image")
@@ -11,15 +15,13 @@ Use the hook to access information about the model. Build a custom UI around the
 
 ![Dental plaque chart UI](public/chart_ui.png "Chart UI")
 
-
-## Installation
+## 📦 Installation
 
 ```shell
 npm install dental-plaque-chart
 ```
 
-## Usage
-
+## ⚙️ Usage
 
 ```js
 import {useDentalPlaqueChart, DentalPlaqueChart} from "dental-plaque-chart"
