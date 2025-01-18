@@ -2,7 +2,7 @@
 
 import TeethGroup from "./TeethGroup";
 import type {DentalPiece, Surface} from "../models/DentalPiece";
-import {UseDentalPlaqueChartReturn} from "../API/DentalPlaqueChartModel";
+import {UseDentalPlaqueChartReturn} from "../hooks/DentalPlaqueChartModel";
 
 type DentalPlaqueChartProps = {
     chart: UseDentalPlaqueChartReturn
